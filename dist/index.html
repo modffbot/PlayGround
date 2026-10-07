@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MODYX AI — منصة الذكاء الاصطناعي</title>
+<meta name="description" content="MODYX AI — منصة AI عربية: محادثة، برمجة، مواقع، صور، ملفات، صوت، بحث.">
+<meta name="theme-color" content="#040914">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+<link rel="apple-touch-icon" href="assets/logo.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="orb o1"></div><div class="orb o2"></div>
+<div class="offbar" id="offbar">⚠️ أنت غير متصل بالإنترنت — وضع عدم الاتصال. ستعمل الميزات المحلية فقط.</div>
+
+<div id="splash">
+  <img class="splashlogo" src="assets/logo.png" alt="MODYX AI" onerror="this.remove()">
+  <div class="logo">MODYX AI<small>AI PLATFORM</small></div>
+  <div class="loader"><i></i></div>
+  <div style="color:#7fd8ff;font-size:13px" id="splashMsg">جاري تهيئة الذكاء الاصطناعي...</div>
+</div>
+
+<!-- CHATGPT-STYLE TOP BAR -->
+<header class="cgtop" id="cgtop" style="display:none">
+  <button class="tbtn" id="menuBtn" title="القائمة">☰</button>
+  <button class="probtn" id="proBtn">✨ اشترك في PRO</button>
+  <button class="tbtn" id="newTopBtn" title="محادثة جديدة">💬</button>
+</header>
+<header class="top" id="guestTop">
+  <div class="brand"><img class="brandimg" src="assets/logo.png" alt="MODYX AI" onerror="this.remove()"><span class="brandname">⚡ MODYX AI</span></div>
+  <span class="badge" id="provBadgeGuest">...</span>
+  <div class="spacer"></div>
+  <button class="iconbtn" id="langBtn" title="Language / اللغة">🌐</button>
+  <button class="iconbtn" id="themeBtn" title="Dark/Light">🌙</button>
+  <button class="btn ghost" id="loginBtn">دخول</button>
+  <button class="btn primary" id="startBtn">ابدأ الآن</button>
+</header>
+
+<!-- LANDING -->
+<section id="landing" style="display:none">
+  <div class="hero">
+    <div class="badge">🚀 منصة عربية • سريعة • آمنة</div>
+    <img class="herologo" src="assets/logo.png" alt="MODYX AI" onerror="this.remove()">
+    <h1>MODYX AI<br><span style="color:var(--neon)">مستقبل الذكاء الاصطناعي</span></h1>
+    <p id="heroSub">محادثة ذكية، خبير برمجة، باني مواقع، فهم صور، ملفات، صوت، وبحث — كل ذلك في منصة واحدة بهوية Neon Blue مستقبلية.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn primary" id="ctaStart">⚡ ابدأ الآن</button>
+      <button class="btn" id="ctaTry">🤖 تجربة AI</button>
+    </div>
+    <div class="feats" style="max-width:900px;margin-inline:auto">
+      <div class="card feat"><b>💬</b><span data-i18n="f_chat">محادثة ذكية</span></div>
+      <div class="card feat"><b>💻</b><span data-i18n="f_code">AI Code Expert</span></div>
+      <div class="card feat"><b>🌐</b><span>Website Builder</span></div>
+      <div class="card feat"><b>🖼️</b><span>فهم الصور</span></div>
+      <div class="card feat"><b>📁</b><span>تحليل الملفات</span></div>
+      <div class="card feat"><b>🎙️</b><span>محادثة صوتية</span></div>
+      <div class="card feat"><b>🔍</b><span>بحث إنترنت</span></div>
+      <div class="card feat"><b>🛡️</b><span>أمان حقيقي</span></div>
+    </div>
+    <div id="landingAd" style="max-width:900px;margin:14px auto"></div>
+  </div>
+  <main class="wrap grid">
+    <div class="card"><h3>💻 قسم البرمجة — AI CODE EXPERT</h3><p style="color:var(--muted)">توليد، تصحيح، شرح، تحسين، تحويل، SQL، مساعدو Python/JS/PHP/Java/C++‎، باني API ومواقع وبوتات — مع محرر أكواد ومعاينة حية.</p></div>
+    <div class="card"><h3>👨‍💻 المطور</h3><p><b>𝑫𝒆𝒗: 𝑯𝒂𝒎𝒆𝒅 𝒂𝒍𝒔𝒉𝒉𝒂𝒕 𝑯𝒂𝒎𝒆𝒅</b></p>
+      <div class="social">
+        <a href="https://t.me/MODYXBOT1" target="_blank" rel="noopener">✈️ Telegram @MODYXBOT1</a>
+        <a href="https://www.tiktok.com/@king_burd" target="_blank" rel="noopener">🎵 TikTok @king_burd</a>
+      </div>
+    </div>
+    <div class="card"><h3>ℹ️ عن المنصة</h3><p style="color:var(--muted)">MODYX AI — AI Platform. الواجهة لا تحتوي أي أسرار؛ الاتصال بالذكاء يتم عبر Backend فقط. بدون مفتاح API تعمل بوضع محلي ذكي معلن بشفافية.</p></div>
+  </main>
+</section>
+
+<!-- APP -->
+<div id="app">
+  <div class="scrim" id="scrim"></div>
+  <aside id="drawer">
+    <div class="dhead">
+      <div class="brand"><img class="brandimg" src="assets/logo.png" alt="MODYX AI" onerror="this.remove()"><span class="brandname">⚡ MODYX AI</span></div>
+      <span class="badge" id="provBadge">...</span>
+    </div>
+    <input id="searchChats" placeholder="🔍 بحث...">
+    <div class="dnav">
+      <button class="navbtn" data-tab="chat">💬 المحادثة</button>
+      <button class="navbtn" data-tab="pro">🧪 Pro Studio</button>
+      <button class="navbtn" data-tab="vision">🖼️ الصور</button>
+      <button class="navbtn" data-tab="files">📚 المكتبة</button>
+      <button class="navbtn" data-tab="website">📁 المشروعات</button>
+      <button class="navbtn" data-tab="code">💻 الأكواد</button>
+      <button class="navbtn" data-tab="search">🔍 البحث</button>
+      <button class="navbtn" data-tab="plans">💎 الاشتراك</button>
+    </div>
+    <div class="dchips">
+      <button class="chip" data-f="all">الكل</button>
+      <button class="chip" data-f="pinned">📌 مثبت</button>
+      <button class="chip" data-f="archived">📦 مؤرشف</button>
+    </div>
+    <hr>
+    <div class="dlabel">المحادثات الأخيرة</div>
+    <div id="chatList"></div>
+    <div class="spacer"></div>
+    <div style="font-size:12px;color:var(--muted)" id="usageBox">—</div>
+    <div class="dfoot">
+      <button class="tbtn" id="langBtn2" title="اللغة">🌐</button>
+      <button class="tbtn" id="themeBtn2" title="المظهر">🌙</button>
+      <button class="tbtn" id="setBtn" title="الإعدادات">⚙️</button>
+      <button class="tbtn" id="voiceBtn2" title="الصوت">🎙️</button>
+      <button class="btn primary" id="newChatBtn" style="flex:1">✎ دردشة جديدة</button>
+    </div>
+    <button class="navbtn" data-tab="notif" style="margin-top:6px">🔔 الإشعارات <span id="notifCount"></span></button>
+    <button class="navbtn" data-tab="settings">⚙️ الإعدادات</button>
+    <button class="navbtn" data-tab="about">ℹ️ About</button>
+    <button class="navbtn" id="logoutBtn">🚪 خروج</button>
+  </aside>
+
+  <main id="main">
+    <div id="panes">
+      <!-- CHAT -->
+      <section data-pane="chat" id="chatPane">
+        <div class="chatsub">
+          <b>💬 <span id="convTitle">محادثة جديدة</span></b>
+          <span class="dot" id="modeDot"></span><small id="modeTxt"></small>
+          <div class="spacer"></div>
+          <select id="modeSel" title="وضع AI"></select>
+          <select id="assistantSel" title="مساعد مخصص"><option value="">🤖 عام</option></select>
+          <button class="tbtn" id="sumBtn" title="تلخيص المحادثة">📝</button>
+          <button class="tbtn" id="shareBtn" title="مشاركة المحادثة">🔗</button>
+          <button class="tbtn" id="stopBtn" title="إيقاف التوليد" hidden>⏹️</button>
+          <button class="tbtn" id="expTxt" title="تصدير TXT">⬇</button>
+          <button class="tbtn" id="expPdf" title="طباعة / PDF">🖨️</button>
+          <button class="tbtn" id="delConv" title="حذف المحادثة">🗑️</button>
+        </div>
+        <div id="capNote"></div>
+        <div id="emptyState">
+          <div class="logo small">MODYX AI</div>
+          <button class="sug" data-sug="ارسم صورة "><span>أنشئ صورة</span><i>🖼️</i></button>
+          <button class="sug" data-sug="اكتب "><span>الكتابة أو التحرير</span><i>✏️</i></button>
+          <button class="sug" data-sug="ابحث عن "><span>بحث في الويب</span><i>🌐</i></button>
+        </div>
+        <div id="msgs"></div>
+        <div id="adSlot" style="margin:6px 0"></div>
+        <div class="pillwrap">
+          <div id="attachBar"></div>
+          <div class="pill">
+            <input type="file" id="fileInput" hidden>
+            <button class="tbtn" id="plusBtn" title="إرفاق">＋</button>
+            <div class="plusmenu" id="plusMenu" hidden>
+              <button data-plus="file">📎 ملف أو صورة</button>
+              <button data-plus="prompts">📚 مكتبة البرومبتات</button>
+              <button data-plus="voice">🎙️ محادثة صوتية</button>
+            </div>
+            <div class="slashhint" id="slashHint" hidden></div>
+            <input id="prompt" placeholder="اسأل MODYX AI" autocomplete="off">
+            <button class="tbtn" id="micBtn" title="إملاء صوتي">🎙️</button>
+            <button class="voicefab" id="voiceGoBtn" title="وضع صوتي">🔊</button>
+            <button class="sendfab" id="sendBtn" title="إرسال">➤</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRO STUDIO -->
+      <section class="card" data-pane="pro" hidden>
+        <h3>🧪 Pro Studio</h3>
+        <div class="codebar" id="proTabs" style="max-height:120px;overflow:auto"></div>
+        <div id="proBody"></div>
+      </section>
+
+      <!-- CODE -->
+      <section class="card" data-pane="code" hidden>
+        <h3>💻 AI CODE EXPERT</h3>
+        <div class="codebar" id="codeTasks"></div>
+        <div class="grid g2">
+          <div><label>اللغة</label><select id="codeLang"><option>Python</option><option>JavaScript</option><option>HTML/CSS/JS</option><option>PHP</option><option>Java</option><option>C++</option><option>SQL</option><option>C</option></select>
+          <label>الوصف / الكود</label><textarea id="codeInput" placeholder="مثال: اكتب دالة ترتب قائمة... أو الصق كودًا لتصحيحه"></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px"><button class="btn primary" id="codeRun">⚡ تنفيذ</button><button class="btn" id="codeCopy">📋 نسخ</button><button class="btn" id="codeDl">⬇️ تنزيل</button></div></div>
+          <div><label>النتيجة</label><div id="codeOut" class="msg ai">اختر مهمة واضغط تنفيذ.</div>
+          <div id="codePrevWrap" hidden><label>معاينة حية (HTML فقط — آمنة في iframe معزول)</label><iframe class="prev" id="codePrev" sandbox="allow-scripts"></iframe></div></div>
+        </div>
+      </section>
+
+      <!-- WEBSITE -->
+      <section class="card" data-pane="website" hidden>
+        <h3>🌐 AI Website Builder</h3>
+        <input id="siteDesc" placeholder='مثال: اعمل لي موقع مطعم بألوان داكنة وقائمة طعام...'>
+        <div style="display:flex;gap:8px;margin:10px 0;flex-wrap:wrap"><button class="btn primary" id="siteGen">✨ توليد الموقع</button><button class="btn" id="siteDl">⬇️ تنزيل المشروع</button><button class="btn" id="siteRegen">🔄 إعادة التوليد</button></div>
+        <div id="sitePlan" style="color:var(--muted);font-size:14px"></div>
+        <div class="split"><div><label>index.html</label><textarea id="siteHtml" style="min-height:220px;direction:ltr"></textarea></div>
+        <div><label>Preview</label><iframe class="prev" id="sitePrev" sandbox="allow-scripts"></iframe></div></div>
+      </section>
+
+      <!-- VISION -->
+      <section class="card" data-pane="vision" hidden>
+        <h3>🖼️ AI Image Understanding</h3>
+        <div id="visCap" style="font-size:13px;color:var(--muted)"></div>
+        <input type="file" id="visFile" accept="image/*">
+        <input id="visQ" placeholder="سؤال عن الصورة (مثال: صِف الصورة واقرأ أي نص ظاهر)" style="margin-top:8px">
+        <div class="crow" style="margin-top:8px"><select id="visTarget" style="max-width:160px"><option>العربية</option><option>الإنجليزية</option><option>الفرنسية</option></select><button class="btn" id="visTranslate">🌍 ترجمة نصوص الصورة</button><button class="btn primary" id="visGo">🔍 تحليل الصورة</button></div>
+        <div class="prow"><button class="btn" id="camStart">📷 كاميرا حية</button><button class="btn primary" id="camShot" hidden>📸 التقاط وسؤال</button></div>
+        <video id="camVideo" playsinline style="width:100%;border-radius:12px;display:none"></video>
+        <div id="visOut" class="msg ai" style="margin-top:10px">ارفع صورة لبدء التحليل.</div>
+      </section>
+
+      <!-- FILES -->
+      <section class="card" data-pane="files" hidden>
+        <h3>📁 الملفات <small style="color:var(--muted)">(TXT · PDF · DOCX · XLSX · CSV · صور)</small></h3>
+        <div id="fileList"><div class="empty">لا ملفات بعد.</div></div>
+      </section>
+
+      <!-- SEARCH -->
+      <section class="card" data-pane="search" hidden>
+        <h3>🔍 بحث الإنترنت</h3>
+        <div id="searchCap" style="font-size:13px;color:var(--muted)"></div>
+        <div class="crow"><input id="searchQ" placeholder="ابحث عن أي معلومة..."><button class="btn primary" id="searchGo">بحث</button></div>
+        <div id="searchOut" style="margin-top:10px"></div>
+      </section>
+
+      <!-- VOICE -->
+      <section class="card" data-pane="voice" hidden>
+        <h3>🎙️ المحادثة الصوتية</h3>
+        <p style="color:var(--muted);font-size:13px">التعرف والنطق عبر متصفحك (Web Speech API). لا يُدَّعى دعم STT/TTS سحابي غير متصل.</p>
+        <label>اللغة</label><select id="voiceLang"><option value="ar-SA">العربية</option><option value="en-US">English</option></select>
+        <div style="display:flex;gap:8px;margin:10px 0;flex-wrap:wrap">
+          <button class="btn" id="recStart">⏺️ تسجيل</button><button class="btn" id="recStop">⏹️ إيقاف</button>
+          <button class="btn" id="speakAns">🔊 قراءة آخر إجابة</button>
+          <button class="btn primary" id="loopVoice">🔁 وضع مستمر</button>
+        </div>
+        <textarea id="voiceText" placeholder="الكلام المحوّل إلى نص سيظهر هنا..."></textarea>
+        <button class="btn primary" id="voiceSend">إرسال كنص للمحادثة</button>
+      </section>
+
+      <!-- PLANS -->
+      <section class="card" data-pane="plans" hidden>
+        <h3>💎 خطط الاشتراك</h3>
+        <div id="planStatus" style="font-size:14px;color:var(--muted)"></div>
+        <div id="payInstr" class="filechip" style="margin:10px 0"></div>
+        <div id="payBox"></div>
+        <div id="plansGrid" class="grid g2"></div>
+      </section>
+
+      <!-- NOTIF -->
+      <section class="card" data-pane="notif" hidden><h3>🔔 الإشعارات</h3><div id="notifList"></div></section>
+
+      <!-- SETTINGS -->
+      <section class="card" data-pane="settings" hidden>
+        <h3>⚙️ الإعدادات والحساب</h3>
+        <div class="grid g2">
+          <div><label>اسم المستخدم</label><input id="setName"><label>اللغة</label><select id="setLang"><option value="ar">العربية</option><option value="en">English</option><option value="fr">Français</option></select>
+          <label>المظهر</label><select id="setTheme"><option value="dark">Neon Blue</option><option value="purple">Neon Purple</option><option value="green">Neon Green</option><option value="light">Light</option></select>
+          <label>لون التمييز (Accent)</label><input type="color" id="setAccent" value="#00cfff" style="height:44px;padding:4px">
+          <label>حجم الخط</label><select id="setFont"><option value="14px">صغير</option><option value="15px">متوسط</option><option value="17px">كبير</option></select>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap"><button class="btn primary" id="saveSet">💾 حفظ</button><button class="btn danger" id="delAcc">🗑️ حذف الحساب</button></div></div>
+          <div><label>صورة شخصية (URL)</label><input id="setAvatar" placeholder="https://..."><label>إعدادات الخصوصية/الإشعارات</label>
+          <div class="filechip"><input type="checkbox" id="setNotif" checked style="width:auto"> تفعيل إشعارات التطبيق</div>
+          <div class="filechip">🔑 مفاتيح API تُدار في ملف <code>.env</code> على الخادم فقط — لا تُدخلها هنا أبدًا.</div></div>
+        </div>
+        <h4>🎨 خلفية مخصصة</h4>
+        <div class="crow"><input type="file" id="bgFile" accept="image/*" hidden><button class="btn" id="bgPick">🖼️ اختر صورة خلفية</button><input type="range" id="bgOpacity" min="10" max="90" value="25" style="flex:1"><button class="btn danger" id="bgClear">✕ إزالة</button></div>
+        <small style="color:var(--muted)">صورتك تظهر خلف الواجهة بشفافية قابلة للضبط.</small>
+        <h4>🔐 الأمان: 2FA والجلسات</h4>
+        <div id="tfaBox"><button class="btn" id="tfaSetup">🔐 تفعيل المصادقة الثنائية</button></div>
+        <div id="sessList" style="margin-top:8px"></div>
+        <div class="filechip"><input type="checkbox" id="setPush" style="width:auto"> إشعارات Push <small id="pushState"></small></div>
+        <h4>🧠 الذاكرة الدائمة</h4>
+        <p style="font-size:13px;color:var(--muted)">يتذكرك AI تلقائيًا (اسمك عند قول «اسمي...» وأي «تذكر أن...») — أو أضف معلومة يدويًا.</p>
+        <div class="crow"><input id="memInput" placeholder="مثال: أعمل مهندسًا وأحب الشرح المختصر"><button class="btn primary" id="memAdd">＋ حفظ</button></div>
+        <div class="prow"><button class="btn" id="styleLearn">🎨 تعلّم أسلوبي في الكتابة</button><button class="btn" id="tgLink">✈️ ربط Telegram</button></div>
+        <div id="memList" style="margin-top:8px"></div>
+      </section>
+
+      <!-- ADMIN -->
+      <section class="card" data-pane="admin" hidden>
+        <h3>🛡️ Admin Panel</h3>
+        <div class="grid g2"><div class="card" id="admStats">...</div>
+        <div class="card"><h4>📢 إعلان/تنبيه</h4><input id="admTitle" placeholder="العنوان"><textarea id="admBody" placeholder="نص الإعلان"></textarea><button class="btn primary" id="admNotify">إرسال</button></div></div>
+        <h4>👥 المستخدمون</h4><div id="admUsers"></div>
+        <h4>⚙️ الحدود والإعدادات</h4><div class="grid g2"><div><label>daily_messages_limit</label><input id="limMsg"><label>daily_files_limit</label><input id="limFiles"></div>
+        <div><label>daily_search_limit</label><input id="limSearch"><label>announcement</label><input id="limAnn"><button class="btn primary" id="admSave" style="margin-top:10px">حفظ الإعدادات</button></div></div>
+        <h4>💎 أسعار الخطط وحدودها</h4><div id="planSet" class="grid g2"></div>
+        <h4>⏳ طلبات الاشتراك</h4><div id="admSubs"><div class="empty">لا طلبات.</div></div>
+        <h4>📜 Logs</h4><div id="admLogs"></div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="card" data-pane="about" hidden>
+        <h3>ℹ️ About — MODYX AI</h3>
+        <p><b>MODYX AI</b> — AI Platform</p>
+        <p>𝑫𝒆𝒗: 𝑯𝒂𝒎𝒆𝒅 𝒂𝒍𝒔𝒉𝒉𝒂𝒕 𝑯𝒂𝒎𝒆𝒅</p>
+        <div class="social">
+          <a href="https://t.me/MODYXBOT1" target="_blank" rel="noopener">✈️ Telegram @MODYXBOT1</a>
+          <a href="https://www.tiktok.com/@king_burd" target="_blank" rel="noopener">🎵 TikTok @king_burd</a>
+        </div>
+      </section>
+
+      <footer>MODYX AI © 2026 • 𝑫𝒆𝒗: 𝑯𝒂𝒎𝒆𝒅 𝒂𝒍𝒔𝒉𝒉𝒂𝒕 𝑯𝒂𝒎𝒆𝒅 • <a href="https://t.me/MODYXBOT1" target="_blank">Telegram</a> • <a href="https://www.tiktok.com/@king_burd" target="_blank">TikTok</a> <span id="admDots" title="•••" style="opacity:.25;font-size:10px;cursor:pointer;padding:6px">•••</span></footer>
+    </div>
+  </main>
+</div>
+
+<div class="modal" id="authModal"><div class="box card">
+  <h3 id="authTitle">تسجيل الدخول</h3>
+  <p style="font-size:12px;color:var(--muted)">🔒 الدخول إجباري لاستخدام MODYX AI — حسابك يحفظ محادثاتك وخطتك.</p>
+  <div id="regNameWrap" hidden><label>الاسم</label><input id="authName" placeholder="اسمك"></div>
+  <label id="authIdLabel">البريد الإلكتروني أو الهاتف</label><input id="authEmail" placeholder="you@mail.com أو 01xxxxxxxxx" dir="ltr">
+  <div id="regPhoneWrap" hidden><label>الهاتف (اختياري — للدخول به لاحقًا)</label><input id="authPhone" placeholder="01xxxxxxxxx" dir="ltr"></div>
+  <label>كلمة المرور</label><input id="authPass" type="password" placeholder="••••••" dir="ltr">
+  <div style="display:flex;gap:8px;margin-top:12px"><button class="btn primary" id="authGo" style="flex:1">دخول</button><button class="btn ghost" id="authClose">إغلاق</button></div>
+  <button class="btn" id="googleBtn" style="width:100%;margin-top:8px" hidden>🔵 الدخول بحساب Google</button>
+  <p style="font-size:13px;color:var(--muted)"><a href="#" id="authSwitch">إنشاء حساب جديد</a></p>
+</div></div>
+
+<div class="modal" id="adminModal"><div class="box card">
+  <h3>🔐 Admin Authentication</h3>
+  <p style="font-size:13px;color:var(--muted)">منطقة مقيدة — أدخل كلمة مرور الإدارة.</p>
+  <input id="adminPass" type="password" placeholder="••••••" dir="ltr">
+  <div style="display:flex;gap:8px;margin-top:12px"><button class="btn primary" id="adminGo" style="flex:1">تحقق</button><button class="btn ghost" id="adminClose">إغلاق</button></div>
+</div></div>
+
+<div id="toasts"></div>
+
+<div class="modal" id="promptsModal"><div class="box card" style="max-width:520px">
+  <h3>📚 مكتبة البرومبتات</h3>
+  <div class="crow"><input id="promptSearch" placeholder="ابحث في القوالب..."><button class="btn primary" id="promptCustom">＋ قالبك</button></div>
+  <div id="promptList" style="max-height:320px;overflow:auto;display:flex;flex-direction:column;gap:6px;margin-top:10px"></div>
+  <button class="btn ghost" id="promptsClose" style="margin-top:10px">إغلاق</button>
+</div></div>
+<script src="app.js"></script>
+<script src="pro.js"></script>
+</body>
+</html>
