@@ -1,6 +1,6 @@
 /* MODYX AI service worker: offline shell, never cache API */
 const CACHE = 'modyx-v3';
-const SHELL = ['./index.html', './styles.css', './app.js', './manifest.json'];
+const SHELL = ['./index.html', './styles.css', './app.js', './pro.js', './manifest.json', './assets/logo.png', './assets/icon-192.png', './assets/icon-512.png'];
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
 });

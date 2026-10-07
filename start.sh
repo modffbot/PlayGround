@@ -14,7 +14,7 @@ export PROJECT_ROOT WEB_DIR
 /usr/bin/time -p mkdir -p "$WEB_DIR" "$PROJECT_ROOT/dist" "$PROJECT_ROOT/modyx-ai/data/uploads"
 /usr/bin/time -p cp -f "$PROJECT_ROOT/modyx-ai/frontend/index.html" "$PROJECT_ROOT/modyx-ai/frontend/styles.css" "$PROJECT_ROOT/modyx-ai/frontend/app.js" "$PROJECT_ROOT/modyx-ai/frontend/pro.js" "$PROJECT_ROOT/modyx-ai/frontend/manifest.json" "$PROJECT_ROOT/modyx-ai/frontend/sw.js" "$PROJECT_ROOT/dist/"
 /usr/bin/time -p mkdir -p "$PROJECT_ROOT/dist/assets"
-/usr/bin/time -p cp -f "$PROJECT_ROOT/modyx-ai/frontend/assets/logo.png" "$PROJECT_ROOT/dist/assets/" 2>/dev/null || echo "logo.png not yet provided - see modyx-ai/frontend/assets/README.txt"
+/usr/bin/time -p cp -f "$PROJECT_ROOT/modyx-ai/frontend/assets/logo.png" "$PROJECT_ROOT/modyx-ai/frontend/assets/icon-192.png" "$PROJECT_ROOT/modyx-ai/frontend/assets/icon-512.png" "$PROJECT_ROOT/modyx-ai/frontend/assets/maskable-512.png" "$PROJECT_ROOT/dist/assets/" 2>/dev/null || echo "logo assets not yet provided - see modyx-ai/frontend/assets/README.txt"
 /usr/bin/time -p test -f "$PROJECT_ROOT/dist/index.html"
 /usr/bin/time -p node -e "const fs=require('fs');const f=process.env.WEB_DIR+'/deployment-output.json';fs.writeFileSync(f,JSON.stringify({project:process.env.PROJECT_ROOT,directory:process.env.PROJECT_ROOT+'/dist'}));console.log(fs.readFileSync(f,'utf8'))"
 /usr/bin/time -p node -e "const o=require(process.env.WEB_DIR+'/deployment-output.json');if(o.project!==process.env.PROJECT_ROOT||!/index\.html$/.test(require('fs').readdirSync(o.directory).join())){};require('fs').accessSync(o.directory+'/index.html')"
