@@ -43,3 +43,14 @@ DATABASE_URL=sqlite:./data/modyx.db
 AUTH_SECRET=
 TAVILY_API_KEY=    # اختياري للبحث الحي
 ```
+
+## النشر على Vercel (مجاني)
+
+1. ارفع المستودع على GitHub ثم Import في `vercel.com` (الملف `vercel.json` جاهز).
+2. في لوحة المشروع ← Settings ← Environment Variables أضف:
+   `DATABASE_URL=sqlite:/tmp/modyx.db` + مفاتيحك (`AI_API_KEY` `AUTH_SECRET` ...).
+3. Deploy — ستحصل على `https://xxx.vercel.app`.
+
+حدود معلنة على Vercel: قاعدة البيانات في `/tmp` **مؤقتة** (تُمسح مع إعادة التشغيل) —
+للبيانات الدائمة اربط Postgres (Neon/Supabase) مع محول في `backend/db.js`.
+المهام المجدولة تعمل عبر Cron المدمج (`/api/cron` كل ساعة).

@@ -35,7 +35,7 @@ app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 400, standardHeaders: true })
 const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 30 });
 const chatLimiter = rateLimit({ windowMs: 60 * 1000, max: 60 });
 
-const uploadDir = path.join(__dirname, '..', 'data', 'uploads');
+const uploadDir = process.env.UPLOAD_DIR || (process.env.VERCEL ? '/tmp/modyx-uploads' : path.join(__dirname, '..', 'data', 'uploads'));
 fs.mkdirSync(uploadDir, { recursive: true });
 const ALLOWED = {
   '.txt': 'text/plain', '.md': 'text/markdown', '.csv': 'text/csv', '.json': 'application/json',
@@ -1038,6 +1038,9 @@ app.get('*', (req, res) => {
 });
 
 const HOST = process.env.HOST || '0.0.0.0';
-const server = app.listen(PORT, HOST, () => console.log(`[MODYX AI] listening on http://${HOST}:${PORT} (env PORT=${process.env.PORT || 'default'})`));
-server.on('error', (e) => { console.error(`[MODYX AI] FATAL: cannot bind ${HOST}:${PORT} — ${e.message}`); process.exit(1); });
-module.exports = { processMessage };
+if (!process.env.VERCEL) {
+  const server = app.listen(PORT, HOST, () => console.log(`[MODYX AI] listening on http://${HOST}:${PORT} (env PORT=${process.env.PORT || 'default'})`));
+  server.on('error', (e) => { console.error(`[MODYX AI] FATAL: cannot bind ${HOST}:${PORT} — ${e.message}`); process.exit(1); });
+}
+module.exports = app;
+module.exports.processMessage = processMessage;

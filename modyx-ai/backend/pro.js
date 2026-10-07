@@ -103,16 +103,23 @@ async function runScheduled(st) {
   const nx = st.repeat === 'daily' ? computeNext(st.schedule, 'daily') : '';
   db.prepare('UPDATE scheduled_tasks SET next_run=?, enabled=? WHERE id=?').run(nx, st.repeat === 'daily' && nx ? 1 : 0, st.id);
 }
+async function runDueTasks() {
+  let ran = 0;
+  try {
+    const due = db.prepare("SELECT * FROM scheduled_tasks WHERE enabled=1 AND next_run<>'' AND next_run<=datetime('now')").all();
+    for (const st of due) {
+      if (st.end_date && st.end_date < new Date().toISOString().slice(0, 10)) { db.prepare('UPDATE scheduled_tasks SET enabled=0 WHERE id=?').run(st.id); continue; }
+      await runScheduled(st);
+      ran++;
+    }
+  } catch {}
+  return ran;
+}
 function startScheduler() {
-  setInterval(async () => {
-    try {
-      const due = db.prepare("SELECT * FROM scheduled_tasks WHERE enabled=1 AND next_run<>'' AND next_run<=datetime('now')").all();
-      for (const st of due) {
-        if (st.end_date && st.end_date < new Date().toISOString().slice(0, 10)) { db.prepare('UPDATE scheduled_tasks SET enabled=0 WHERE id=?').run(st.id); continue; }
-        await runScheduled(st);
-      }
-    } catch {}
-  }, 30000);
+  try {
+    const t = setInterval(runDueTasks, 30000);
+    if (t.unref) t.unref(); // don't hold the event loop (tests + serverless)
+  } catch {}
 }
 
 /* ---------- knowledge RAG (keyword, honest) ---------- */
@@ -903,6 +910,16 @@ function mountPro(app) {
       if (!isNaN(h)) hours[h]++;
     }
     res.json({ days, byMode, hours, total: days.reduce((s, d) => s + (d.messages || 0), 0) });
+  });
+
+  /* ---------- serverless cron trigger (Vercel/others hit this URL on schedule) ---------- */
+  app.get('/api/cron', async (req, res) => {
+    const ua = req.headers['user-agent'] || '';
+    const okKey = process.env.CRON_SECRET && req.query.key === process.env.CRON_SECRET;
+    const okCron = ua.includes('vercel-cron');
+    if (!okKey && !okCron) return res.status(403).json({ error: 'forbidden' });
+    const ran = await runDueTasks();
+    res.json({ ok: true, ran });
   });
 
   /* ---------- admin ops ---------- */

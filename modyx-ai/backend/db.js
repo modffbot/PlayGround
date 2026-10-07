@@ -12,6 +12,7 @@ const durl = process.env.DATABASE_URL || '';
 if (durl.startsWith('sqlite:')) {
   const p = durl.slice('sqlite:'.length);
   dbPath = path.isAbsolute(p) ? p : path.join(__dirname, '..', p);
+  try { fs.mkdirSync(path.dirname(dbPath), { recursive: true }); } catch {}
 }
 
 const db = new DatabaseSync(dbPath);
