@@ -1,0 +1,34 @@
+﻿MODYX AI — إعداد المفاتيح (اقرأني)
+====================================
+ملف الإعداد الحقيقي اسمه .env وهو موجود فعلًا داخل مجلد modyx-ai،
+لكن مستكشف الملفات يُخفي الملفات التي تبدأ بنقطة — لهذا لا تراه.
+
+انسخ القالب التالي والصقه في ملف .env (أنشئه لو لزم — سيختفي من العرض وهذا طبيعي):
+
+----- انسخ من هنا -----
+PORT=3000
+AUTH_SECRET=
+ADMIN_EMAIL=admin@modyx.ai
+ADMIN_PASSWORD=
+ADMIN_NAME=MODYX Admin
+AI_PROVIDER=gemini
+AI_MODEL=gemini-1.5-flash
+AI_API_KEY=
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_BOT_NAME=
+TELEGRAM_WEBHOOK_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+----- إلى هنا -----
+
+خطوات الملء:
+1. AUTH_SECRET: نص عشوائي طويل (30+ حرفًا).
+2. ADMIN_PASSWORD: كلمة سر الإدارة.
+3. AI_API_KEY: مفتاح Gemini من aistudio.google.com (مجاني).
+4. TELEGRAM_*: من @BotFather (أمر /newbot).
+5. GOOGLE_*: من Google Cloud Console (اختياري — زر Google يظهر تلقائيًا عند ملئهما).
+
+الطريقة الأسهل (موصى بها): عند النشر على Render أو Railway
+الصق المفاتيح في لوحة Environment Variables — بدون أي ملفات.
+
+تحذير: لا ترسل المفاتيح في أي محادثة أو صورة — مكانها هذا الملف فقط.

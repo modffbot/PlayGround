@@ -1,0 +1,26 @@
+{
+  "name": "MODYX AI — منصة الذكاء الاصطناعي",
+  "short_name": "MODYX AI",
+  "description": "محادثة ذكية، برمجة، مواقع، صور، ملفات، صوت وبحث.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "dir": "rtl",
+  "lang": "ar",
+  "background_color": "#040914",
+  "theme_color": "#040914",
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

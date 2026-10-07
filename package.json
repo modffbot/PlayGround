@@ -1,0 +1,13 @@
+{
+  "name": "modyx-ai-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MODYX AI — root launcher (hosts run npm start here)",
+  "scripts": {
+    "start": "node modyx-ai/backend/server.js",
+    "install-all": "npm --prefix modyx-ai install --no-audit --no-fund"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
